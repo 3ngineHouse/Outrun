@@ -57,4 +57,15 @@ body {
         position: relative;
         top: -150px;    //This will be changed when the game initializes
     }
+
+    #truck {
+        height: 100px;
+        width: 60px;
+        background-color: blue;
+        grid-column: 1;
+        grid-row: 1;
+        position: relative;
+        top: 600px;
+        left: 270px;
+    }
 }
