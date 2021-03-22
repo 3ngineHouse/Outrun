@@ -1,6 +1,56 @@
-#gameWorld {
-  height: 500px;
-  width: 500px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Times New Roman", Times, serif;
+}
+
+body {
+  background-color: lightgray;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-rows: 1fr 10fr 1fr;
+}
+
+.blockBar {
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+  grid-column: 2;
+  background-color: lightgrey;
+}
+
+#topBar {
+  grid-row: 1;
+}
+
+#bottomBar {
+  grid-row: 3;
+}
+
+#gameFrame {
+  position: relative;
   align-self: center;
   justify-self: center;
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 1;
+  height: 800px;
+  width: 600px;
+  background-color: grey;
+}
+#gameFrame .obstacle {
+  height: 100px;
+  width: 60px;
+  background-color: red;
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  top: -150px;
 }
