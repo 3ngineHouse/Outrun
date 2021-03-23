@@ -16,6 +16,23 @@ body {
   grid-template-rows: 1fr 10fr 1fr;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: chocolate;
+  grid-column: 1/4;
+  grid-row: 1/4;
+  z-index: 4;
+  height: 100%;
+  width: 100%;
+}
+main button {
+  width: 300px;
+  height: 50px;
+}
+
 .blockBar {
   height: 100%;
   width: 100%;
@@ -29,7 +46,27 @@ body {
 }
 
 #bottomBar {
+  display: grid;
   grid-row: 3;
+}
+#bottomBar #healthMeter {
+  height: 30px;
+  width: 500px;
+  background-color: black;
+  border: 3px solid black;
+  align-self: center;
+  justify-self: center;
+  z-index: 4;
+}
+#bottomBar #healthMeter #healthBar {
+  height: 100%;
+  width: 100%;
+  background-color: lightgreen;
+}
+
+#startButton {
+  grid-column: 1;
+  grid-row: 1;
 }
 
 #gameFrame {
@@ -52,7 +89,6 @@ body {
   grid-column: 1;
   grid-row: 1;
   position: relative;
-  top: -150px;
 }
 #gameFrame #truck {
   height: 100px;
