@@ -2,20 +2,30 @@ const gameFrame = document.querySelector("#gameFrame");
 const obstacles = document.querySelectorAll(".obstacle");
 const truck = document.querySelector("#truck");
 const healthBar = document.querySelector("#healthBar");
+const EMPBar = document.querySelector("#EMPBar");
 const menu = document.querySelector("#menu");
+const swarm = document.querySelector("#swarm");
+const EMPWeapon = document.querySelector("#EMPWeapon");
 
 let speed = 8;
 let steer = 0;
 let health = 100;
+let EMP = 0;
+let droneTone = 0;
 let running = false;
 
+// Win sequence variables
+let droneFade = 1;
+let winTime = 0;
+let winDuration = 220;
+
 document.addEventListener("keydown", function startAction (event) {
-    if (event.key === "a") {
+    if (event.key === "a" && (running == true || winTime>0)) {
         console.log("start turning left!");
         steer = -1;
     }
 
-    if (event.key === "d") {
+    if (event.key === "d" && (running == true || winTime>0)) {
         console.log("start turning right!");
         steer = 1;
     }
@@ -40,10 +50,13 @@ document.addEventListener("keyup", function stopAction (event) {
 const setLevel = (level) => {
     // Set the difficulty
     speed = 5 + level;
-    
-    // Reset health
+    winDuration = (speed*20)+50;    // It REALLY makes a difference how long you're stopped for before the win alert shows
+  
+    // Reset variables
     health = 100;
+    EMP = 0;
     healthBar.style.width = `${health}%`;
+    steer = 0;
 
     // Reset the objects
     truck.style.left = "270px";
@@ -60,8 +73,10 @@ const startGame = () => {
         obstacle.style.top=`-${Yposition}px`;
         setObstacle(obstacle);
     })
-    
+
     running = true;
+    winTime = winDuration;
+
     window.requestAnimationFrame(gameLoop);
 }
 
@@ -69,8 +84,11 @@ const gameLoop = () => {
     moveObstacle();
     moveTruck();
     collisionCheck();
+    animateDrones();
 //  Move drones?
-//  Check for drone collision?    
+//  Check for drone collision?
+    chargeEMP();
+
     if (running == true){
         window.requestAnimationFrame(gameLoop);
     }
@@ -106,6 +124,7 @@ const collisionCheck = () => {
             obstacle.style.backgroundColor = "darkslategrey"
             health-=10;
             healthBar.style.width = `${health}%`;
+            healthBar.innerHTML=`${health}%`;
         }
 
         // If health is 0, it's game over
@@ -181,4 +200,48 @@ const setObstacle = (obstacle) => {
 
     // If the obstacle has been "deactivated" by a collision, reactivate it
     obstacle.style.backgroundColor="red";
+}
+
+const chargeEMP = () => {
+    if (EMP>=100){
+        swarm.style.backgroundColor="darkred";
+        running = false;           
+        EMPWeapon.style.borderWidth="200vh";
+        EMPWeapon.style.borderColor= "rgba(173,216,230,0)";
+        window.requestAnimationFrame(winLoop);        
+    } else {
+        EMP+=0.05;
+        EMPBar.style.width = `${EMP}%`;
+        EMPBar.innerHTML=`${Math.floor(EMP)}%`;
+    }
+}
+
+const winLoop = () => {
+    winTime--
+
+    if (droneFade>0) {droneFade-=0.01} else {droneFade=0}
+
+    if (speed>0) {speed-=0.05} else {speed=0}
+
+    moveObstacle();
+    moveTruck();
+    collisionCheck();
+
+    swarm.style.opacity = droneFade;
+
+    if (winTime==0){
+        alert("You win!");
+    } else {
+        window.requestAnimationFrame(winLoop);
+    }
+}
+
+const animateDrones = () => {
+    droneTone+=5;
+    if (droneTone > 100){
+        droneTone=0;
+    }
+    swarm.style.backgroundColor=`rgba(${droneTone},${droneTone},${droneTone},1)`;
+
+    //173, 216, 230
 }

@@ -48,24 +48,51 @@ main {
 }
 
 #bottomBar {
-    display: grid;
     grid-row: 3;
+    display: flex;
+    justify-content: center;
+}
 
-    #healthMeter{
+#meterTray{
+    display: grid;
+    width: 600px;
+    height: 100%;
+    grid-template-columns: 60px 240px 60px 240px;
+    align-items: center;
+
+    .meter{
         height: 30px;
-        width: 500px;
+        width: 90%;
         background-color: black;
         border: 3px solid black;
         
-        align-self: center;
-        justify-self: center;
 
         z-index: 4;
         
-        #healthBar{
+        .bar{
+            display: flex;
+            align-items: center;
+            padding-left: 5px;
+
             height: 100%;
             width: 100%;
+        }
+    }
+
+    #healthMeter{
+        grid-column: 2;
+
+        #healthBar{
             background-color: lightgreen;
+        }
+    }
+
+    #EMPMeter{
+        grid-column: 4;
+
+        #EMPBar{
+            background-color: lightblue;
+            width: 0%;            
         }
     }
 }
@@ -109,5 +136,37 @@ main {
         position: relative;
         top: 600px;
         left: 270px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
+    #swarm {
+        height: 50px;
+        width: 100%;
+        grid-column: 1;
+        grid-row: 1;
+        align-self: end;
+        z-index: 2;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+        color: whitesmoke;
+    }
+}
+
+#EMPWeapon {
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;
+    overflow: visible;
+    text-align: center;
+    vertical-align: center;
+    border: 0px solid rgba(173,216,230,1);
+    transition: border .9s, background-color .8s;
+    transition-timing-function: ease;
+    z-index: 10;
 }
