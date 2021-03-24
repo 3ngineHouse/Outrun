@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="./dist/styles.css">
 </head>
 <body>
+    <main id="menu">
+        <h1>Outrun</h1>
+        <button onclick="setLevel(1)">Level 1</button>
+        <button onclick="setLevel(2)">Level 2</button>
+        <button onclick="setLevel(3)">Level 3</button>
+        <button onclick="setLevel(4)">Level 4</button>
+        <button onclick="setLevel(5)">Level 5</button>        
+    </main>
+
     <button id="startButton" onclick="startGame()">Start</button>
     <div class="blockBar" id="topBar"></div>
     <div id="gameFrame">
@@ -19,7 +28,11 @@
         <div class="obstacle"></div>
         <div id="truck"></div>
     </div>
-    <div class="blockBar" id="bottomBar"></div>
+    <div class="blockBar" id="bottomBar">
+        <div id="healthMeter">
+            <div id="healthBar"></div>
+        </div>
+    </div>
 
 </body>
 </html>
