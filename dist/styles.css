@@ -8,12 +8,11 @@
 body {
   background-color: lightgray;
   height: 100vh;
-  width: 100vw;
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: 1fr 10fr 1fr;
-  grid-template-rows: 1fr 10fr 1fr;
+  grid-template-columns: 1fr 1000px 1fr;
+  grid-template-rows: 100px 1fr 500px 100px;
 }
 
 main {
@@ -22,8 +21,8 @@ main {
   align-items: center;
   justify-content: space-evenly;
   background-color: chocolate;
-  grid-column: 1/4;
-  grid-row: 1/4;
+  grid-column: 1/-1;
+  grid-row: 1/-1;
   z-index: 4;
   height: 100%;
   width: 100%;
@@ -37,18 +36,40 @@ main button {
   height: 100%;
   width: 100%;
   z-index: 3;
-  grid-column: 2;
   background-color: lightgrey;
 }
 
 #topBar {
   grid-row: 1;
+  grid-column: 2;
+}
+
+#leftBar {
+  grid-row: 2/4;
+  grid-column: 1;
+}
+
+#rightBar {
+  grid-row: 2/4;
+  grid-column: 3;
 }
 
 #bottomBar {
-  grid-row: 3;
+  grid-row: 4;
+  grid-column: 2;
   display: flex;
   justify-content: center;
+}
+
+#backdrop {
+  grid-column: 2;
+  grid-row: 2;
+  height: 100%;
+  width: 100%;
+  background-image: url("../images/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
 
 #meterTray {
@@ -96,13 +117,14 @@ main button {
   align-self: center;
   justify-self: center;
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 3;
   display: grid;
   grid-template-columns: 1;
   grid-template-rows: 1;
-  height: 800px;
-  width: 600px;
+  height: 1000px;
+  width: 500px;
   background-color: grey;
+  transform: rotate(90deg);
 }
 #gameFrame .obstacle {
   height: 100px;
@@ -111,6 +133,13 @@ main button {
   grid-column: 1;
   grid-row: 1;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#gameFrame img {
+  max-height: 100%;
+  max-width: 100%;
 }
 #gameFrame #truck {
   height: 100px;
@@ -124,6 +153,22 @@ main button {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("../images/playerCar.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+#gameFrame #truck #EMPWeapon {
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  overflow: visible;
+  text-align: center;
+  vertical-align: center;
+  border: 0px solid lightblue;
+  transition: border 0.9s, background-color 0.8s;
+  transition-timing-function: ease;
+  z-index: 10;
 }
 #gameFrame #swarm {
   height: 50px;
@@ -137,17 +182,4 @@ main button {
   align-items: center;
   background-color: black;
   color: whitesmoke;
-}
-
-#EMPWeapon {
-  width: 0px;
-  height: 0px;
-  border-radius: 50%;
-  overflow: visible;
-  text-align: center;
-  vertical-align: center;
-  border: 0px solid lightblue;
-  transition: border 0.9s, background-color 0.8s;
-  transition-timing-function: ease;
-  z-index: 10;
 }

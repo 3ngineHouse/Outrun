@@ -11,21 +11,24 @@
 <body>
     <main id="menu">
         <h1>Outrun</h1>
-        <button onclick="setLevel(1)">Level 1</button>
-        <button onclick="setLevel(2)">Level 2</button>
-        <button onclick="setLevel(3)">Level 3</button>
-        <button onclick="setLevel(4)">Level 4</button>
-        <button onclick="setLevel(5)">Level 5</button>        
+        <h6>Select difficulty:</h6>
+        <button onclick="setLevel(3)">Easy</button>
+        <button onclick="setLevel(5)">Medium</button>
+        <button onclick="setLevel(7)">Hard</button>        
     </main>
 
     <button id="startButton" onclick="startGame()">Start</button>
     <div class="blockBar" id="topBar"></div>
+    <div class="blockBar" id="leftBar"></div>
+    <div class="blockBar" id="rightBar"></div>
+    <div id="backdrop"></div>
     <div id="gameFrame">
-        <div class="obstacle"></div>
-        <div class="obstacle"></div>
-        <div class="obstacle"></div>
-        <div class="obstacle"></div>
-        <div class="obstacle"></div>
+        <div class="obstacle"><img src="./images/vehicle1.png" alt="wrecked car"></div>
+        <div class="obstacle"><img src="./images/vehicle2.png" alt="wrecked car"></div>
+        <div class="obstacle"><img src="./images/vehicle3.png" alt="wrecked car"></div>
+        <div class="obstacle"><img src="./images/vehicle4.png" alt="wrecked car"></div>
+        <div class="obstacle"><img src="./images/vehicle5.png" alt="wrecked car"></div>
+        <div class="obstacle"><img src="./images/vehicle6.png" alt="wrecked car"></div>
         <div id="truck">
             <div id="EMPWeapon"></div>
         </div>
@@ -43,6 +46,5 @@
             </div>
         </div>
     </div>
-
 </body>
 </html>

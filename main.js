@@ -210,7 +210,7 @@ const chargeEMP = () => {
         EMPWeapon.style.borderColor= "rgba(173,216,230,0)";
         window.requestAnimationFrame(winLoop);        
     } else {
-        EMP+=0.05;
+        EMP+=0.04;
         EMPBar.style.width = `${EMP}%`;
         EMPBar.innerHTML=`${Math.floor(EMP)}%`;
     }
