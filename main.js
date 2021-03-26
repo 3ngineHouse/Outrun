@@ -38,7 +38,7 @@ document.addEventListener("keyup", function stopAction (event) {
             steer = 0;
         }
     }
-
+    
     if (event.key === "d") {
         // We straighten only if the player hasn't already started turning left
         if (steer == 1){
