@@ -54,8 +54,12 @@ const setLevel = (level) => {
   
     // Reset variables
     health = 100;
-    EMP = 0;
     healthBar.style.width = `${health}%`;
+    healthBar.innerHTML=`${health}%`;    
+    EMP = 0;    
+    EMPBar.style.width = `${EMP}%`;
+    EMPBar.innerHTML=`${Math.floor(EMP)}%`;
+    
     steer = 0;
 
     // Reset the objects
